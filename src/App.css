@@ -1,10 +1,24 @@
-.App {
+.app {
   text-align: center;
+  margin: 16px;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+@media (min-width: 768px) {
+  .app {
+    margin: 32px 64px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .app {
+    margin: 32px 170px;
+  }
+}
+
+.cards {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 
 @media (prefers-reduced-motion: no-preference) {
@@ -22,10 +36,6 @@
   justify-content: center;
   font-size: calc(10px + 2vmin);
   color: white;
-}
-
-.App-link {
-  color: #61dafb;
 }
 
 @keyframes App-logo-spin {
