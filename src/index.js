@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import Game from './Game/Game';
 import reportWebVitals from './reportWebVitals';
 import { GlobalStyle } from './GlobalStyle';
+import 'focus-visible';
 
 ReactDOM.render(
   <React.StrictMode>

@@ -10,4 +10,11 @@ export const GlobalStyle = createGlobalStyle`
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
+  /*
+    This will hide the focus indicator if the element receives focus via the mouse,
+    but it will still show up on keyboard focus.
+  */
+  .js-focus-visible :focus:not(.focus-visible) {
+    outline: none;
+  }
 `;
