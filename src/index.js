@@ -1,12 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
+import Game from './Game/Game';
 import reportWebVitals from './reportWebVitals';
+import { GlobalStyle } from './GlobalStyle';
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <GlobalStyle />
+    <Game />
   </React.StrictMode>,
   document.getElementById('root')
 );
