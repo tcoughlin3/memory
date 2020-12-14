@@ -1,42 +1,25 @@
 import React from 'react';
-import useWindowSize from 'react-use/lib/useWindowSize';
+// eslint-disable-next-line no-unused-vars
+import styled from 'styled-components/macro';
 import Confetti from 'react-confetti';
+import useWindowSize from 'react-use/lib/useWindowSize';
 import { Container } from '../components/Container';
 import { Section } from '../components/Section';
-import { Card } from './Card';
-import * as cardsSvgs from './CardFaces';
 import useSound from '../hooks/useSound';
 import matchSfx from './sounds/match.mp3';
 import flipSfx from './sounds/flip.wav';
 import winSfx from './sounds/win.mp3';
-// eslint-disable-next-line no-unused-vars
-import styled from 'styled-components/macro';
+import { Card } from './Card';
+import * as cardsSvgs from './CardFaces';
+import shuffle from './shuffle';
 
-// TODOS
-// - [x] use styled-components lib
-// - [ ] code cleanup - refactor to separate files
-// - [ ] write tests
-// - [ ] white sox theme
-//   - [ ] replace card assets
-//   - [ ] add GR field background
-// - [ ] deploy
-// - [ ] add auth
-// - [ ] add leader board
-
-function shuffle(cards) {
-  cards.forEach((card, index) => {
-    const randomIndex = Math.floor(Math.random() * cards.length);
-    const randomCard = cards[randomIndex];
-    cards.splice(index, 1, randomCard);
-    cards.splice(randomIndex, 1, card);
-  });
-  return cards;
-}
-
-const cards = Object.values(cardsSvgs);
-
-const shuffleDeck = () =>
-  shuffle([
+// Deck has shape Array<{ cardId: string, component: ReactComponent }>
+// Matching cards have the same cardId based on file name with the exception of
+// '-A' and '-B' appended to either one so we can know which of the pair is
+// turned over.
+const shuffleDeck = () => {
+  const cards = Object.values(cardsSvgs);
+  return shuffle([
     ...cards.map((CardFace) => {
       const cardId = `${CardFace.name}-A`;
       const Component = (props) => <Card {...props} cardFace={CardFace} />;
@@ -48,7 +31,9 @@ const shuffleDeck = () =>
       return { cardId, component: Component };
     }),
   ]);
+};
 
+// Simple game utilities
 const toCardType = (cardId) => cardId.slice(0, -2);
 const isMatch = (cardIdA, cardIdB) =>
   toCardType(cardIdA) === toCardType(cardIdB);
@@ -162,7 +147,7 @@ function Game() {
             justify-content: center;
           `}
         >
-          {state.deck.map(({ cardId, component: Card }) => {
+          {state.deck.map(({ cardId, component: Card }, index) => {
             const isTurnedOver =
               state.flippedCards.includes(cardId) ||
               state.matchedCards.includes(cardId);
@@ -174,6 +159,11 @@ function Game() {
             };
             return (
               <Card
+                aria-label={
+                  isTurnedOver
+                    ? `Face up card ${cardId}`
+                    : `Face down card ${index}`
+                }
                 isTurnedOver={isTurnedOver}
                 key={cardId}
                 onClick={onClick}
@@ -217,6 +207,7 @@ function Game() {
       {wonGame && (
         <Confetti
           confettiSource={{ w: 10, h: 10, x: width, y: height }}
+          data-testid="confetti"
           width={width}
           height={height}
           initialVelocityX={-14}
