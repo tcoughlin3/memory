@@ -137,8 +137,9 @@ function Game() {
             css={`
               color: white;
               font-size: 4rem;
-              font-family: 'Schoolbell';
-              text-shadow: 2px 1px 1px #ffd700;
+              font-family: 'Bangers';
+              letter-spacing: 2px;
+              text-shadow: 2px 1px 1px red;
             `}
           >
             Memory
