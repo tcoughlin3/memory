@@ -162,13 +162,14 @@ describe('<Game />', () => {
     render(<Game />);
 
     async function matchPair() {
-      const faceDownCards = await findAllFaceDown();
+      let faceDownCards = await findAllFaceDown();
       // Given the shape of the cards array with no shuffling (described at
       // top of file), the card matching index zero is reliably always the card
       // at length / 2.
       userEvent.click(faceDownCards[0]);
       userEvent.click(faceDownCards[faceDownCards.length / 2]);
     }
+
     // 1st matching pair
     await matchPair();
     // 2nd matching pair

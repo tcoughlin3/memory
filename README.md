@@ -1,6 +1,10 @@
-# Getting Started with Create React App
+# Memory Game made with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+
+## Adding Card SVGs
+
+See [svgr documentation](https://react-svgr.com/docs/cli/#transform-a-whole-directory)
 
 ## Available Scripts
 

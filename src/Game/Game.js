@@ -3,6 +3,7 @@ import React from 'react';
 import styled from 'styled-components/macro';
 import Confetti from 'react-confetti';
 import useWindowSize from 'react-use/lib/useWindowSize';
+import { Button } from '../components/Button';
 import { Container } from '../components/Container';
 import { Section } from '../components/Section';
 import useSound from '../hooks/useSound';
@@ -134,7 +135,10 @@ function Game() {
         <Section>
           <span
             css={`
-              font-size: 3rem;
+              color: white;
+              font-size: 4rem;
+              font-family: 'Schoolbell';
+              text-shadow: 2px 1px 1px #ffd700;
             `}
           >
             Memory
@@ -192,16 +196,13 @@ function Game() {
             />
           </label>
 
-          <button
-            css={`
-              margin-left: 12px;
-            `}
+          <Button
             onClick={() => {
               dispatch({ type: 'resetGame' });
             }}
           >
             Reset Game
-          </button>
+          </Button>
         </Section>
       </Container>
       {wonGame && (

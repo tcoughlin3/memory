@@ -33,7 +33,7 @@ export function Card(props) {
           transform,
         }}
       >
-        <CardBack {...svgProps} />
+        <CardBack {...svgProps} data-testid="card-back" />
       </animated.div>
       <animated.div
         style={{
@@ -44,7 +44,7 @@ export function Card(props) {
           transform: transform.interpolate((t) => `${t} rotateY(180deg)`),
         }}
       >
-        <CardFace {...svgProps} />
+        <CardFace {...svgProps} data-testid="card-face" />
       </animated.div>
     </div>
   );
